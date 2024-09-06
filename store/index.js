@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { restaurantReducer } from "./slices/restaurantSlice";
+import { restaurantReducer, changeQuery } from "./slices/restaurantSlice";
 
 const store = configureStore({
   reducer: {
@@ -7,4 +7,4 @@ const store = configureStore({
   },
 });
 
-export { store };
+export { store, changeQuery };
