@@ -45,7 +45,14 @@ export default function StoreList({ stores, navigation }) {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => navigation.navigate("Detail")}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Detail", {
+                  storeID: item.id,
+                  name: item.name,
+                })
+              }
+            >
               <RestaurantCard storeInfo={item} />
             </TouchableOpacity>
           );
