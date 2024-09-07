@@ -33,9 +33,10 @@ const style = s.create({
     height: 180,
     aspectRatio: 2 / 1.2,
     marginRight: 10,
-    backgroundColor: "#f7f7f7",
+    backgroundColor: "#ddd",
     padding: 10,
     flexDirection: "row",
+    borderRadius: 10,
   },
   image: {
     width: 200,

@@ -37,5 +37,11 @@ const style = s.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  input: { fontSize: 20, paddingHorizontal: 10, marginLeft: 10 },
+  input: {
+    fontSize: 20,
+    paddingHorizontal: 10,
+    marginLeft: 10,
+    minWidth: "70%",
+    height: "100%",
+  },
 });

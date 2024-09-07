@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchRestaurants } from "../store";
 
-export default function SearchScreen() {
+export default function SearchScreen({ navigation }) {
   // Local state to store categories of restaurants.
   // Currently, the only categories are price
   const [sortedStoresByPrice, setSortedStoresByPrice] = useState({});
@@ -14,7 +14,7 @@ export default function SearchScreen() {
   // Pulls 'stores' from state. Eventually contains results from yelp API
   const stores = useSelector((state) => state.restaurants.stores);
 
-  // Sorts
+  // Sorts restaurants based on reported price
   const mapStoresToCollection = () => {
     const storeCollection = {
       cheap: [],
@@ -49,22 +49,31 @@ export default function SearchScreen() {
   };
 
   // useEffect(() => {
-  //   dispatch(fetchRestaurants())
+  //   dispatch(fetchRestaurants());
   // }, []);
 
   useEffect(() => {
     setSortedStoresByPrice(mapStoresToCollection);
   }, [stores]);
+
   return (
     <View style={styles.view}>
       <SearchBar />
       <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
         {stores.length ? (
           Object.keys(sortedStoresByPrice).map((key) => {
-            return <StoreList key={key} stores={sortedStoresByPrice[key]} />;
+            return (
+              <StoreList
+                key={key}
+                navigation={navigation}
+                stores={sortedStoresByPrice[key]}
+              />
+            );
           })
         ) : (
-          <Text>Loading restaurants!</Text>
+          <Text style={{ textAlign: "center", marginTop: 20 }}>
+            Loading restaurants!
+          </Text>
         )}
       </ScrollView>
     </View>

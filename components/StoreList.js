@@ -1,8 +1,14 @@
 import React from "react";
-import { View, FlatList, Text, StyleSheet as s } from "react-native";
+import {
+  View,
+  FlatList,
+  Text,
+  StyleSheet as s,
+  TouchableOpacity,
+} from "react-native";
 import RestaurantCard from "./RestaurantCard";
 
-export default function StoreList({ stores }) {
+export default function StoreList({ stores, navigation }) {
   if (!stores.length) return;
 
   const configureTitle = () => {
@@ -38,7 +44,11 @@ export default function StoreList({ stores }) {
         data={stores}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
-          return <RestaurantCard storeInfo={item} />;
+          return (
+            <TouchableOpacity onPress={() => navigation.navigate("Detail")}>
+              <RestaurantCard storeInfo={item} />
+            </TouchableOpacity>
+          );
         }}
       />
     </View>
