@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   FlatList,
@@ -8,7 +9,8 @@ import {
 } from "react-native";
 import RestaurantCard from "./RestaurantCard";
 
-export default function StoreList({ stores, navigation }) {
+export default function StoreList({ stores }) {
+  const navigation = useNavigation();
   if (!stores.length) return;
 
   const configureTitle = () => {
@@ -41,6 +43,7 @@ export default function StoreList({ stores, navigation }) {
 
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={stores}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {

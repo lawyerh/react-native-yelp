@@ -4,9 +4,10 @@ import SearchBar from "../components/SearchBar";
 import StoreList from "../components/StoreList";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { Feather } from "@expo/vector-icons";
 import { fetchRestaurants } from "../store";
 
-export default function SearchScreen({ navigation }) {
+export default function SearchScreen() {
   // Local state to store categories of restaurants.
   // Currently, the only categories are price
   const [sortedStoresByPrice, setSortedStoresByPrice] = useState({});
@@ -62,13 +63,7 @@ export default function SearchScreen({ navigation }) {
       <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
         {stores.length ? (
           Object.keys(sortedStoresByPrice).map((key) => {
-            return (
-              <StoreList
-                key={key}
-                navigation={navigation}
-                stores={sortedStoresByPrice[key]}
-              />
-            );
+            return <StoreList key={key} stores={sortedStoresByPrice[key]} />;
           })
         ) : (
           <Text style={{ textAlign: "center", marginTop: 20 }}>
@@ -79,6 +74,12 @@ export default function SearchScreen({ navigation }) {
     </View>
   );
 }
+
+navigationOptions = () => {
+  return {
+    headerRight: <Feather name={"search"} size={30} />,
+  };
+};
 
 const styles = s.create({
   view: {},
